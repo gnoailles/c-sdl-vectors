@@ -9,6 +9,7 @@ typedef struct Particle {
     Vector* acc;
     Vector* prevPos;
     float maxSpeed;
+    int color[4];
 } Particle;
 
 Particle* particle_create();

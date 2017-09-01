@@ -1,10 +1,11 @@
 #ifndef PERLIN_H
 #define PERLIN_H
 
-int noise2(int x, int y);
-float lin_inter(float x, float y, float s);
-float smooth_inter(float x, float y, float s);
-float noise2d(float x, float y);
-float perlin2d(float x, float y, float freq, int depth);
+double octavePerlin(double x, double y, double z, int octaves, double persistence);
+double perlin(double x, double y, double z);
+static int inc(int num);
+static double grad(int hash, double x, double y, double z);
+static double fade(double t);
+static double lerp(double a, double b, double x);
 
 #endif //PERLIN_H

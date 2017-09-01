@@ -16,7 +16,7 @@ int main() {
     SDL_Event e;
 
     int i = 0, y = 0, x = 0;
-    float inc = 0.2;
+    float inc = 0.05;
     float yoff = 0, xoff = 0, zoff = 0;
 
 	window = initVideo("Vectors");
@@ -41,13 +41,14 @@ int main() {
             }
 
 
-			while(!quit){
+            while(!quit){
 
-				while(SDL_PollEvent(&e) !=0) {
-					if(e.type == SDL_QUIT) {
-						quit = 1;
-					}
-				}
+                while(SDL_PollEvent(&e) !=0) {
+                    if(e.type == SDL_QUIT) {
+                        quit = 1;
+                    }
+                }
+
 
                 SDL_SetRenderDrawColor(renderer, 10, 10, 10, 0);
                 SDL_RenderClear(renderer);
@@ -59,10 +60,10 @@ int main() {
                     x = 0;
                     while(x < COLS) {
                         int idx = x + y * COLS;
-                        float angle = perlin2d(xoff,yoff,zoff, 1) * 2*M_PI * 4;
+                        float angle = octavePerlin(xoff,yoff,zoff,4,0.8) * 2*M_PI * 4;
                         Vector* v = vector_fromAngle(angle);
                         float mag = vector_getMag(v);
-                        thickLineRGBA(renderer, x*SCALE, y*SCALE, x*SCALE + v->x*SCALE/2, y*SCALE + v->y*SCALE/2, 1,255,255,255,125);
+                        thickLineRGBA(renderer, x*SCALE, y*SCALE, x*SCALE + v->x*SCALE/2, y*SCALE + v->y*SCALE/2, 1,255,255,255,80);
                         vector_setMag(v,0.2);
                         flowField[idx] = v;
 
@@ -72,7 +73,7 @@ int main() {
                     yoff += inc;
                     ++y;
                 }
-                zoff += 0.001;
+                zoff += 0.005;
                 zoff;
                 i = 0;
                 while(i < PARTSNB) {
@@ -94,6 +95,7 @@ int main() {
             i = 0;
             while(i < COLS * ROWS) {
                 free(flowField[i]);
+                flowField[i] = NULL;
                 ++i;
             }
 		}

@@ -46,8 +46,13 @@ void particle_show(Particle* p,SDL_Renderer* rend) {
 
 void particle_destroy(Particle* p) {
     free(p->pos);
+    p->pos = NULL;
     free(p->prevPos);
+    p->prevPos = NULL;
     free(p->acc);
+    p->acc = NULL;
     free(p->vel);
+    p->vel = NULL;
     free(p);
+    p = NULL;
 }
