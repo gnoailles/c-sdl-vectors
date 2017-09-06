@@ -19,7 +19,9 @@ set(SOURCE_FILES
         Particle.c
         Particle.h
         perlin.c
-        perlin.h)
+        perlin.h
+        flowField.h
+        flowField.c)
 
 add_executable(vector_sdl ${SOURCE_FILES})
 target_link_libraries(vector_sdl ${SDL2_LIBRARIES} ${SDL2GFX_LIBRARIES} m)

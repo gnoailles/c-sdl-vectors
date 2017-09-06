@@ -11,7 +11,7 @@ Vector* vector_copy(Vector* v);
 Vector* vector_fromAngle(float a);
 
 void vector_add(Vector* v1, Vector* v2);
-void vector_mult(Vector* v1,float n);
+void vector_mult(Vector* v,float n);
 
 float vector_getMag(Vector *v);
 float vector_getMagSq(Vector *v);
